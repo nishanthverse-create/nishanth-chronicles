@@ -1,0 +1,15 @@
+const C=CONTENT;
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const photo=(src,label)=>`<div class="photo"><span>${esc(label)}<br><small>Photo space</small></span>${src?`<img src="${esc(src)}" alt="${esc(label)}" loading="lazy">`:''}</div>`;
+const tile=(x,withPhoto=false)=>`<article class="tile" data-category="${esc(x.tag)}">${withPhoto?photo(x.photo,x.title):''}${x.tag?`<span class="tag">${esc(x.tag)}</span>`:''}<h3>${esc(x.title)}</h3>${x.text?`<p>${esc(x.text)}</p>`:''}</article>`;
+const section=(id,num,title,body)=>`<section id="${id}"><span class="eyebrow">Chapter ${num}</span><h2>${title}</h2>${body}</section>`;
+const grid=(arr,p=false)=>`<div class="grid">${arr.map(x=>tile(x,p)).join('')}</div>`;
+document.querySelector('#app').innerHTML=`<section class="hero"><div><span class="eyebrow">Cover story · The Husband Edition</span><h2>${esc(C.hero.title)}</h2><p>${esc(C.hero.text)}</p><a class="button" href="#man">Read the edition</a></div>${photo(C.hero.photo,'Nishanth · cover portrait')}</section>`+
+section('man','01','The man behind the magazine',grid(C.journey)+`<div class="strip">${C.skills.map(x=>`<div>${esc(x)}</div>`).join('')}</div>`)+
+section('obsessions','02','Things his wife has to compete with',grid(C.obsessions)+`<p class="note">The original shop lives on as a playful catalogue, not an actual store.</p>`)+
+section('circle','03','The people who keep him anchored',grid(C.friends,true))+
+section('love','04','My favorite weirdo',`<blockquote>Previously girlfriend. Now Lifetime Manager. No resignation clause.</blockquote>${grid(C.love,true)}<h3>How we got here</h3><div class="timeline">${C.timeline.map(x=>`<article><span class="tag">${esc(x.tag)}</span><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p></article>`).join('')}</div>`)+
+section('diaries','05','The marriage & adventure diaries',`<div class="filters" aria-label="Filter diary entries">${['All','Marriage','Travel','Humour'].map((x,i)=>`<button type="button" aria-pressed="${i===0}" data-filter="${x}">${x}</button>`).join('')}</div><div id="entries">${grid(C.diaries,true)}</div>`)+
+section('archive','06','The boyfriend-era archives',`<p>Before the rings, there was a little website made with love. The original edition remains a time capsule of those days.</p><a class="button" href="${esc(C.archive)}" target="_blank" rel="noopener noreferrer">Visit the original website ↗</a>`);
+document.querySelectorAll('img').forEach(img=>{const fail=()=>img.hidden=true;img.addEventListener('error',fail);if(img.complete&&!img.naturalWidth)fail()});
+document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.querySelectorAll('#entries [data-category]').forEach(x=>x.hidden=b.dataset.filter!=='All'&&x.dataset.category!==b.dataset.filter)}));document.querySelector('#year').textContent=new Date().getFullYear();

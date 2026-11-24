@@ -1,0 +1,19 @@
+THE NISHANTH CHRONICLES — OWNER'S GUIDE
+
+PREVIEW: Extract the ZIP, then double-click index.html. Keep all four website files in the same folder. Internet is required for the four Wix-hosted reference photos; they may not load. All text and layout work offline.
+
+EDIT: Open content.js in Notepad or another text editor. Change text inside quotes. Save and refresh index.html. Add diary entries by copying an existing diary object, including its comma. The filters use Marriage, Travel and Humour categories. Edit style.css for colours and typography. Edit index.html for the masthead and navigation.
+
+PHOTOS: Download your original photos from Wix Media Manager or use your personal originals. Put them in the images folder, e.g. images/portrait.jpg. Replace the relevant photo field in content.js with that local path. Blank photo fields display a designed placeholder. Friend photo fields can be added to their objects. The four remote Wix image URLs are references, not downloaded copies; their availability was not verified. Replace them before relying on the site long term. The original homepage was used as a reference; other Wix pages/posts are not migrated. Add their content if desired. Keep the original Wix link until you have backed up all your media and writing.
+
+PUBLISH FREE WITH GITHUB PAGES:
+1. Sign up at https://github.com/signup using your own email and enable two-factor authentication.
+2. Create a PUBLIC repository named nishanth-chronicles (or YOURUSERNAME.github.io if you want a root URL).
+3. Open the repository, choose Add file > Upload files, and upload the extracted index.html, style.css, content.js, site.js and any photo files inside images/ (keep paths intact). Do not upload only the ZIP. Commit changes to main.
+4. Go to Settings > Pages. Under Build and deployment choose Deploy from a branch, select main and / (root), then Save.
+5. Wait for GitHub to publish and use the URL displayed in Settings > Pages. It will usually be https://YOURUSERNAME.github.io/nishanth-chronicles/ for a project repository.
+6. To update text, open content.js in the repository, click the pencil, edit and Commit changes. To update photos, upload replacement files and change paths if needed. Changes may take a few minutes to appear.
+
+OWNERSHIP AND PRIVACY: Your account controls the repository. Keep a local ZIP backup and your original photos. The free GitHub Pages repository and website are public: do not upload private photos, personal contact details or confidential information; obtain consent from friends before publishing their photos. No custom domain is required. Free hosting is subject to provider terms and cannot be guaranteed forever. No login, analytics, payments or backend is included in this static site.
+
+Official help: https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site
